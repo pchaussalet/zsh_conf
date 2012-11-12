@@ -1,5 +1,5 @@
 
-grep 'mappy.priv' /etc/resolv.conf > /dev/null
+ifconfig eth0 |grep 10.0.1.124 > /dev/null
 if [[ $? == 0 ]]; then
   source ~/mappyrc
 else

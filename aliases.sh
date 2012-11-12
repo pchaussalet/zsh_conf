@@ -16,7 +16,6 @@ alias l='ls -CF'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 
-alias nautilus='nautilus --no-desktop'
 alias virlxc='virsh -c lxc:///' 
 alias virkvm='virsh -c qemu:///system'
 alias irc='ssh -t arthur@chaussalet.net screen -d -R'

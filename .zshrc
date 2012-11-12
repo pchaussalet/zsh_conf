@@ -12,22 +12,24 @@ compinit
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
-setopt appendhistory autocd extendedglob
+setopt appendhistory autocd extendedglob hist_ignore_space hist_ignore_dups
 bindkey -e
 # End of lines configured by zsh-newuser-install
 
-LANG=en_US.UTF8
-LANGUAGE=en_US:en
-LC_NUMERIC=fr_FR.UTF-8
-LC_TIME=fr_FR.UTF-8
-LC_MONETARY=fr_FR.UTF-8
-LC_PAPER=fr_FR.UTF-8
-LC_IDENTIFICATION=fr_FR.UTF-8
-LC_NAME=fr_FR.UTF-8
-LC_ADDRESS=fr_FR.UTF-8
-LC_TELEPHONE=fr_FR.UTF-8
-LC_MEASUREMENT=fr_FR.UTF-8
+export LANG=en_US.UTF8
+export LANGUAGE=en_US:en
+export LC_NUMERIC=fr_FR.UTF-8
+export LC_TIME=fr_FR.UTF-8
+export LC_MONETARY=fr_FR.UTF-8
+export LC_PAPER=fr_FR.UTF-8
+export LC_IDENTIFICATION=fr_FR.UTF-8
+export LC_NAME=fr_FR.UTF-8
+export LC_ADDRESS=fr_FR.UTF-8
+export LC_TELEPHONE=fr_FR.UTF-8
+export LC_MEASUREMENT=fr_FR.UTF-8
 export LC_CTYPE=en_US.UTF-8
+
+export PATH=$PATH:/sbin:/usr/local/heroku/bin
 
 source ~/.zsh/git-prompt/zshrc.sh
 PROMPT='%B%n@%m %1~%b$(git_super_status) %# '
