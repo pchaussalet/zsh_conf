@@ -1,0 +1,2 @@
+export AWS_IAM_HOME=~/tools/aws/iam
+export PATH=$PATH:$AWS_IAM_HOME/bin

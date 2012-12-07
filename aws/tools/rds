@@ -1,0 +1,2 @@
+export AWS_RDS_HOME=~/tools/aws/rds
+export PATH=$PATH:$AWS_RDS_HOME/bin

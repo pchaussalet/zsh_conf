@@ -1,0 +1,2 @@
+export AWS_AUTO_SCALING_HOME=~/tools/aws/autoscaling
+export PATH=$PATH:$AWS_AUTO_SCALING_HOME/bin

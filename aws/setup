@@ -1,0 +1,9 @@
+export AWS_CREDENTIAL_FILE=~/.zsh/aws/credentials
+
+export AWS_ACCESS_KEY=AKIAIOHYWWPGADE6TTAA
+export AWS_SECRET_KEY=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
+
+for tool in ~/.zsh/aws/tools/*
+do
+  source $tool
+done

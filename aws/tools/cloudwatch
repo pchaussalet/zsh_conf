@@ -1,0 +1,2 @@
+export AWS_CLOUDWATCH_HOME=~/tools/aws/cloudwatch
+export PATH=$PATH:$AWS_CLOUDWATCH_HOME/bin

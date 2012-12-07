@@ -38,3 +38,4 @@ source ~/.zsh/aliases.sh
 source ~/.zsh/exports.sh
 source ~/.zsh/ssh_keys.sh
 
+source ~/.zsh/aws/setup

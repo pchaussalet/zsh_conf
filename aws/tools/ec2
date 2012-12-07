@@ -1,0 +1,2 @@
+export EC2_HOME=~/tools/aws/ec2
+export PATH=$PATH:$EC2_HOME/bin
