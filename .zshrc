@@ -1,3 +1,10 @@
+if [ "$SSH_AGENT_PID" = "" ]
+then
+  ssh-agent | source /dev/stdin
+fi
+
+source ~/.zsh/oh-my-zsh.sh
+
 # The following lines were added by compinstall
 
 zstyle ':completion:*' completer _complete _ignored _approximate
@@ -39,3 +46,8 @@ source ~/.zsh/exports.sh
 source ~/.zsh/ssh_keys.sh
 
 source ~/.zsh/aws/setup
+source ~/.zsh/nodejs.sh
+
+export PATH=$PATH:~/tools/scripts
+
+export _JAVA_AWT_WM_NONREPARENTING=1
