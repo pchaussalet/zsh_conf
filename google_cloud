@@ -1,0 +1,3 @@
+PATH=$PATH:~/tools/google-cloud-sdk/bin
+
+source ~/tools/google-cloud-sdk/completion.zsh.inc

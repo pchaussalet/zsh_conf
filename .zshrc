@@ -95,9 +95,20 @@ source ~/.zsh/aliases.sh
 source ~/.zsh/exports.sh
 source ~/.zsh/ssh_keys.sh
 
-source ~/.zsh/aws/setup
-source ~/.zsh/nodejs.sh
+source ~/.zsh/ruby.sh
+source ~/.zsh/play.sh
+source ~/.zsh/node.sh
+source ~/.zsh/sublime_text.sh
+source ~/.zsh/webstorm.sh
+source ~/.zsh/idea.sh
 
-export PATH=$PATH:~/tools/scripts
+export PATH=$PATH:~/scripts:~/tools
 
 export _JAVA_AWT_WM_NONREPARENTING=1
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+source ~/.zsh/google_cloud
+source ~/.zsh/golang
+
+source ~/in-tact/.in-tact.zsh
