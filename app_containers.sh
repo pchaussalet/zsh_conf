@@ -1,0 +1,1 @@
+alias spotify='~/launchers/spotify'

@@ -27,15 +27,15 @@ bindkey -e
 
 export LANG=en_US.UTF8
 export LANGUAGE=en_US:en
-export LC_NUMERIC=fr_FR.UTF-8
-export LC_TIME=fr_FR.UTF-8
-export LC_MONETARY=fr_FR.UTF-8
-export LC_PAPER=fr_FR.UTF-8
-export LC_IDENTIFICATION=fr_FR.UTF-8
-export LC_NAME=fr_FR.UTF-8
-export LC_ADDRESS=fr_FR.UTF-8
-export LC_TELEPHONE=fr_FR.UTF-8
-export LC_MEASUREMENT=fr_FR.UTF-8
+export LC_NUMERIC=en_US.UTF-8
+export LC_TIME=en_US.UTF-8
+export LC_MONETARY=en_US.UTF-8
+export LC_PAPER=en_US.UTF-8
+export LC_IDENTIFICATION=en_US.UTF-8
+export LC_NAME=en_US.UTF-8
+export LC_ADDRESS=en_US.UTF-8
+export LC_TELEPHONE=en_US.UTF-8
+export LC_MEASUREMENT=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 
 export PATH=$PATH:/sbin:/usr/local/heroku/bin
@@ -79,17 +79,23 @@ zstyle ':vcs_info:git*+set-message:*' hooks git_added git_modified git_deleted g
 }
 
 precmd() {
-  vcs_info
-  if [[ -n $vcs_info_msg_0_ ]] ; then
-#    RPROMPT=$'[$fg_bold[green]$NUM_ADD$fg_bold[magenta]$NUM_MOD$fg_bold[red]$NUM_DEL$fg_bold[cyan]$NUM_UNT$fg_no_bold[default]]'
-    RPROMPT=$'[%{$fg_bold[green]%}$NUM_ADD%{$fg_bold[magenta]%}$NUM_MOD%{$fg_bold[red]%}$NUM_DEL%{$fg_bold[cyan]%}$NUM_UNT%{$fg_no_bold[default]%}] ${vcs_info_msg_0_}'
-  else
-    RPROMPT=$'[%{$fg_bold[blue]%}%n%{$fg_no_bold[default]%} @ %U%m%u]'
+  if [[ -z $OVERRIDE_PROMPT ]]; then
+    vcs_info
+    if [[ -n $vcs_info_msg_0_ ]] ; then
+  #    RPROMPT=$'[$fg_bold[green]$NUM_ADD$fg_bold[magenta]$NUM_MOD$fg_bold[red]$NUM_DEL$fg_bold[cyan]$NUM_UNT$fg_no_bold[default]]'
+      RPROMPT=$'[%{$fg_bold[green]%}$NUM_ADD%{$fg_bold[magenta]%}$NUM_MOD%{$fg_bold[red]%}$NUM_DEL%{$fg_bold[cyan]%}$NUM_UNT%{$fg_no_bold[default]%}] ${vcs_info_msg_0_}'
+    else
+      RPROMPT=$'[%{$fg_bold[blue]%}%n%{$fg_no_bold[default]%} @ %U%m%u]'
+    fi
+    if [ "_$DOCKER_MACHINE_NAME" = "_" ]; then
+      #PROMPT='%B%n@%m %1~%b$(git_super_status) %# '
+      PROMPT=$'%{$fg_no_bold[green]%}%80<...<%~%{$fg_no_bold[default]%}%(?..%{$fg_bold[red]%} !%?%{$fg_no_bold[default]%}) # '
+    else
+      PROMPT="($DOCKER_MACHINE_NAME)"$'%{$fg_no_bold[green]%}%80<...<%~%{$fg_no_bold[default]%}%(?..%{$fg_bold[red]%} !%?%{$fg_no_bold[default]%}) # '
+    fi
   fi
 }
 
-#PROMPT='%B%n@%m %1~%b$(git_super_status) %# '
-PROMPT=$'%{$fg_no_bold[green]%}%80<...<%~%{$fg_no_bold[default]%}%(?..%{$fg_bold[red]%} !%?%{$fg_no_bold[default]%}) # '
 
 source ~/.zsh/aliases.sh
 source ~/.zsh/exports.sh
@@ -101,6 +107,24 @@ source ~/.zsh/node.sh
 source ~/.zsh/sublime_text.sh
 source ~/.zsh/webstorm.sh
 source ~/.zsh/idea.sh
+source ~/.zsh/montagestudio.sh
+
+switch_display() {
+  local ext_display=$1
+  local mode=$2
+  local scale=$3
+  if [[ ${mode} == off ]] ; then
+    CMD="/usr/bin/xrandr --output eDP1 --auto --output ${ext_display} --off"
+  else
+    if [[ -n ${scale} ]] ; then
+      CMD="/usr/bin/xrandr --output eDP1 --auto --output ${ext_display} --auto --${mode} eDP1 --scale ${scale}"
+    else
+      CMD="/usr/bin/xrandr --output eDP1 --auto --output ${ext_display} --auto  --${mode} eDP1"
+    fi
+  fi
+  echo $CMD
+  /bin/sh -c $CMD
+}
 
 export PATH=$PATH:~/scripts:~/tools
 
@@ -108,7 +132,4 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
-source ~/.zsh/google_cloud
 source ~/.zsh/golang
-
-source ~/in-tact/.in-tact.zsh
